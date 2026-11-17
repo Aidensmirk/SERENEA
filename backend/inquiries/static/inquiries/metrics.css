@@ -1,0 +1,255 @@
+.metrics-dashboard {
+  max-width: 1280px;
+  margin: 0 auto;
+  color: #34493e;
+}
+
+.metrics-heading,
+.metrics-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.metrics-heading {
+  margin: 14px 0 28px;
+}
+
+.metrics-heading h1 {
+  margin: 0 0 7px;
+  color: #34493e;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 500;
+}
+
+.metrics-heading p,
+.metrics-panel-heading p {
+  margin: 0;
+  color: #6d776c;
+  font-size: 14px;
+}
+
+.metrics-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: #eaf0e8;
+  color: #34493e;
+  font-weight: 600;
+}
+
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.metrics-card,
+.metrics-panel {
+  border: 1px solid #e8e8de;
+  border-radius: 18px;
+  background: #fffdf8;
+  box-shadow: 0 8px 26px #34493e0a;
+}
+
+.metrics-card {
+  min-height: 184px;
+  padding: 19px;
+}
+
+.metrics-card-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 13px;
+  font-size: 20px;
+}
+
+.metrics-icon-sage { background: #eaf0e8; color: #526b58; }
+.metrics-icon-rose { background: #f7e9e7; color: #a56d79; }
+.metrics-icon-gold { background: #f6f0df; color: #9c7c40; }
+.metrics-icon-lilac { background: #f0ebf5; color: #766888; }
+
+.metrics-card p {
+  margin: 16px 0 4px;
+  color: #59665a;
+  font-size: 14px;
+}
+
+.metrics-card > strong {
+  display: block;
+  color: #34493e;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.metrics-card-note {
+  display: block;
+  margin-top: 6px;
+  color: #788075;
+  font-size: 12px;
+}
+
+.metrics-panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.metrics-panel {
+  min-height: 280px;
+  padding: 23px;
+}
+
+.metrics-panel-heading {
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.metrics-panel-heading h2 {
+  margin: 0 0 5px;
+  color: #34493e;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.metrics-period {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f5f0e7;
+  color: #6c6d5f;
+  font-size: 12px;
+}
+
+.metrics-chart {
+  display: grid;
+  height: 160px;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  align-items: end;
+  gap: 9px;
+  border-bottom: 1px solid #e8e8de;
+}
+
+.metrics-chart-day {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  color: #768074;
+  font-size: 11px;
+}
+
+.metrics-bar-track {
+  display: flex;
+  width: min(100%, 28px);
+  height: 125px;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 8px 8px 3px 3px;
+  background: #f2f1e9;
+}
+
+.metrics-bar {
+  width: 100%;
+  min-height: 3px;
+  border-radius: 8px 8px 3px 3px;
+  background: #eadfdc;
+}
+
+.metrics-bar-active {
+  background: linear-gradient(180deg, #a5b99d, #6e8973);
+}
+
+.metrics-ranking {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.metrics-ranking li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eeeee7;
+  color: #526052;
+  font-size: 14px;
+}
+
+.metrics-ranking li:last-child {
+  border-bottom: 0;
+}
+
+.metrics-ranking strong {
+  display: grid;
+  min-width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f2f1e9;
+  color: #34493e;
+}
+
+.metrics-empty,
+.metrics-privacy-note {
+  color: #6e786c;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.metrics-empty {
+  padding: 14px 0;
+}
+
+.metrics-privacy-note {
+  margin: 18px 4px 0;
+}
+
+@media (max-width: 900px) {
+  .metrics-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metrics-panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .metrics-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .metrics-cards {
+    gap: 10px;
+  }
+
+  .metrics-card {
+    min-height: 170px;
+    padding: 14px;
+  }
+
+  .metrics-panel {
+    padding: 17px;
+  }
+
+  .metrics-chart {
+    gap: 4px;
+  }
+
+  .metrics-chart-day {
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: serenea-api
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r backend/requirements.txt && python backend/manage.py collectstatic --no-input
+    startCommand: cd backend && python manage.py migrate && gunicorn serenea.wsgi:application
+    healthCheckPath: /api/health/
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://serena.vercel.app"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: serenea-db
+          property: connectionString
+
+databases:
+  - name: serenea-db
+    databaseName: serenea
+    user: serenea
+    plan: free
+    region: oregon

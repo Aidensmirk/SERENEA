@@ -1,0 +1,93 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Website metrics | {{ site_title }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'inquiries/metrics.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="metrics-dashboard">
+  <div class="metrics-heading">
+    <div>
+      <h1>Website metrics</h1>
+      <p>Anonymous activity for the last 7 days, through {{ today|date:"N j, Y" }}.</p>
+    </div>
+    <a class="metrics-home-link" href="/">View the website <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <section class="metrics-cards" aria-label="Website totals for the past 7 days">
+    <article class="metrics-card">
+      <span class="metrics-card-icon metrics-icon-sage" aria-hidden="true">◉</span>
+      <p>Page views</p>
+      <strong>{{ page_views }}</strong>
+      <span class="metrics-card-note">Home page visits</span>
+    </article>
+    <article class="metrics-card">
+      <span class="metrics-card-icon metrics-icon-rose" aria-hidden="true">♡</span>
+      <p>Section visits</p>
+      <strong>{{ section_views }}</strong>
+      <span class="metrics-card-note">About, support, FAQ and contact</span>
+    </article>
+    <article class="metrics-card">
+      <span class="metrics-card-icon metrics-icon-gold" aria-hidden="true">↗</span>
+      <p>Action clicks</p>
+      <strong>{{ cta_clicks }}</strong>
+      <span class="metrics-card-note">Buttons and support links clicked</span>
+    </article>
+    <article class="metrics-card">
+      <span class="metrics-card-icon metrics-icon-lilac" aria-hidden="true">☏</span>
+      <p>WhatsApp opens</p>
+      <strong>{{ whatsapp_opens }}</strong>
+      <span class="metrics-card-note">Message previews opened in WhatsApp</span>
+    </article>
+  </section>
+
+  <section class="metrics-panels">
+    <article class="metrics-panel metrics-chart-panel">
+      <div class="metrics-panel-heading">
+        <div>
+          <h2>Daily visits</h2>
+          <p>Home page views over the last 14 days</p>
+        </div>
+        <span class="metrics-period">14 days</span>
+      </div>
+      <div class="metrics-chart" role="img" aria-label="Daily home page views over the last 14 days">
+        {% for day in chart_days %}
+        <div class="metrics-chart-day" title="{{ day.date|date:'N j' }}: {{ day.views }} page views">
+          <div class="metrics-bar-track">
+            <div class="metrics-bar{% if day.views %} metrics-bar-active{% endif %}" style="height: {% if day.height %}{{ day.height }}{% else %}3{% endif %}%"></div>
+          </div>
+          <span>{{ day.label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </article>
+
+    <article class="metrics-panel">
+      <div class="metrics-panel-heading">
+        <div>
+          <h2>Helpful next steps</h2>
+          <p>Most-clicked links over the last 7 days</p>
+        </div>
+      </div>
+      {% if top_ctas %}
+      <ol class="metrics-ranking">
+        {% for item in top_ctas %}
+        <li><span>{{ item.label }}</span><strong>{{ item.total }}</strong></li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="metrics-empty">No support links have been clicked yet. They’ll show up here as visitors explore.</p>
+      {% endif %}
+    </article>
+  </section>
+
+  <p class="metrics-privacy-note">
+    These totals come from anonymous website activity events. The site does not attach visitor identities or IP addresses,
+    and message contents are never sent to analytics. WhatsApp opens count a click on “Open WhatsApp,” not a message sent.
+  </p>
+</main>
+{% endblock %}
